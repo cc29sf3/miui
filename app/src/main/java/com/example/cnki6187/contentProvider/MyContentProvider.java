@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.net.URI;
 
 /**
  * Created by cnki6187 on 2017/10/10.
@@ -18,21 +17,26 @@ import java.net.URI;
 
 public class MyContentProvider extends ContentProvider {
 
-    static final String PROVIDER_NAME ="com.example.cnki6187.contentProvider.MyContentProvider";
+    //static final String PROVIDER_NAME ="com.example.cnki6187.contentProvider.MyContentProvider";
+    static public final Uri uri=Uri.parse("content://com.example.cnki6187.contentProvider.MyContentProvider/users");
     static private final int USERS=1;
     static private final int USER_ID=0;
     public static final UriMatcher uriMatcher;
     static{
         uriMatcher=new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(PROVIDER_NAME,"users",USERS);
-        uriMatcher.addURI(PROVIDER_NAME,"users/#",USER_ID);
+        uriMatcher.addURI(uri.getAuthority(),"users",USERS);
+        uriMatcher.addURI(uri.getAuthority(),"users/#",USER_ID);
     }
 
     private MySqliteHelper sqliteHelper;
+    private SQLiteDatabase wdb;
+    private SQLiteDatabase rdb;
 
     @Override
     public boolean onCreate() {
         sqliteHelper= MySqliteHelper.getInstance(getContext());
+        wdb=sqliteHelper.getWritableDatabase();
+        rdb=sqliteHelper.getReadableDatabase();
         return false;
     }
 
@@ -45,9 +49,9 @@ public class MyContentProvider extends ContentProvider {
         switch (result)
         {
             case USERS:
-                return sqliteHelper.rdb.query(MySqliteHelper.TestTable.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
+                return rdb.query(MySqliteHelper.TestTable.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
             case USER_ID:
-                return sqliteHelper.rdb.query(MySqliteHelper.TestTable.TABLE_NAME,projection,
+                return rdb.query(MySqliteHelper.TestTable.TABLE_NAME,projection,
                         MySqliteHelper.TestTable._ID+"=?",
                         new String[]{uri.getLastPathSegment()},
                         null,null,sortOrder);
@@ -67,7 +71,7 @@ public class MyContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         if(sqliteHelper==null)
             return null;
-        long id=sqliteHelper.wdb.insert(MySqliteHelper.TestTable.TABLE_NAME,null,values);
+        long id=wdb.insert(MySqliteHelper.TestTable.TABLE_NAME,null,values);
         if(id>0)
             return Uri.withAppendedPath(uri, String.valueOf(id));
         else
@@ -81,9 +85,9 @@ public class MyContentProvider extends ContentProvider {
         int result=uriMatcher.match(uri);
         switch (result){
             case USERS:
-                return sqliteHelper.wdb.delete(MySqliteHelper.TestTable.TABLE_NAME,selection,selectionArgs);
+                return wdb.delete(MySqliteHelper.TestTable.TABLE_NAME,selection,selectionArgs);
             case USER_ID:
-                return sqliteHelper.wdb.delete(MySqliteHelper.TestTable.TABLE_NAME,
+                return wdb.delete(MySqliteHelper.TestTable.TABLE_NAME,
                         MySqliteHelper.TestTable._ID+"=?",
                         new String[] {uri.getLastPathSegment()});
             default:
@@ -99,9 +103,9 @@ public class MyContentProvider extends ContentProvider {
         int result=uriMatcher.match(uri);
         switch (result) {
             case USERS:
-                return sqliteHelper.wdb.update(MySqliteHelper.TestTable.TABLE_NAME,values,selection,selectionArgs);
+                return wdb.update(MySqliteHelper.TestTable.TABLE_NAME,values,selection,selectionArgs);
             case USER_ID:
-                return sqliteHelper.wdb.update(MySqliteHelper.TestTable.TABLE_NAME,values,
+                return wdb.update(MySqliteHelper.TestTable.TABLE_NAME,values,
                         MySqliteHelper.TestTable._ID+"=?",
                         new String[] {uri.getLastPathSegment()});
             default:

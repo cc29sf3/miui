@@ -20,14 +20,14 @@ public class MySqliteHelper extends SQLiteOpenHelper {
             TestTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             TestTable.COLUMN_NAME_NAME + " TEXT, " +
             TestTable.COLUMN_NAME_AGE + " INTEGER, " +
-            TestTable.COLUMN_NAME_HEAD_ID + " INTEGER, " +
+            TestTable.COLUMN_NAME_HEAD_ID + " INTEGER" +
             " )";
 
 
 
     private static MySqliteHelper mInstance;
-    public SQLiteDatabase wdb;
-    public SQLiteDatabase rdb;
+//    public static SQLiteDatabase wdb;
+//    public static SQLiteDatabase rdb;
 
     public static MySqliteHelper getInstance(Context context) {
         if(mInstance==null){
@@ -42,8 +42,8 @@ public class MySqliteHelper extends SQLiteOpenHelper {
 
     private MySqliteHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
-        wdb=mInstance.getWritableDatabase();
-        rdb=mInstance.getReadableDatabase();
+//        wdb=mInstance.getWritableDatabase();
+//        rdb=mInstance.getReadableDatabase();
     }
 
     @Override

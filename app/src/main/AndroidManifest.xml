@@ -24,6 +24,11 @@
             android:name=".FailActivity"
             android:label="@string/title_activity_fail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <provider
+            android:name="com.example.cnki6187.contentProvider.MyContentProvider"
+            android:authorities="com.example.cnki6187.contentProvider.MyContentProvider"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -31,4 +31,13 @@
         android:layout_marginLeft="100dp"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_marginLeft="200dp"
+        android:layout_alignBottom="@id/imageView"
+        android:visibility="gone"
+        ></Button>
 </RelativeLayout>
