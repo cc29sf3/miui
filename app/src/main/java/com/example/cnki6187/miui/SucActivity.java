@@ -20,12 +20,14 @@ public class SucActivity extends AppCompatActivity {
 
     private ListView listView;
     public static final String  ACTION="SUC_ACTION";
+    private List<User> userList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suc);
         listView=(ListView)findViewById(R.id.myList);
-        MyAdapter myAdapter =new MyAdapter(this,getUsers());
+        userList=getUsers();
+        MyAdapter myAdapter =new MyAdapter(this,userList);
         listView.setAdapter(myAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -42,7 +44,7 @@ public class SucActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                view.get
+                return false;
             }
         });
 
