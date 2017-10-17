@@ -30,6 +30,15 @@
             android:authorities="com.example.cnki6187.contentProvider.MyContentProvider"
             android:exported="false" />
 
+        <activity
+            android:name=".Recycle"
+            android:label="@string/title_activity_recycle"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.cnki6187.francis29"></action>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

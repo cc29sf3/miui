@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btn_Login;
     private Button btn_Cancel;
+    private Button btn_Recycle;
 
     ProgressDialog progressDialog = null;
 
@@ -72,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 showProgress();
                 LoginThread  lt=new LoginThread(handler,LOGIN_FAIL);
                 new Thread(lt).start();
+            }
+        });
+        btn_Recycle=(Button)findViewById(R.id.buttonRecycle);
+        btn_Recycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setAction("com.example.cnki6187.francis29");
+                startActivity(intent);
             }
         });
     }
