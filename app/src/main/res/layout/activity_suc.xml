@@ -8,10 +8,11 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        >
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:contentScrim="@color/blue"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -19,28 +20,24 @@
             <ImageView
                 android:id="@+id/main.backdrop"
                 android:layout_width="wrap_content"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/topbar"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_suc"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin"  />
-
-
+                app:layout_collapseMode="pin"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <ListView
+        <com.example.cnki6187.customView.MyListView
         android:id="@+id/myList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

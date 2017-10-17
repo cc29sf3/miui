@@ -1,9 +1,12 @@
 package com.example.cnki6187.miui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +14,7 @@ import android.widget.ListView;
 import com.example.cnki6187.adapter.MyAdapter;
 import com.example.cnki6187.contentProvider.MyContentProvider;
 import com.example.cnki6187.contentProvider.MySqliteHelper;
+import com.example.cnki6187.customView.MyListView;
 import com.example.cnki6187.entity.User;
 
 import java.util.ArrayList;
@@ -18,14 +22,18 @@ import java.util.List;
 
 public class SucActivity extends AppCompatActivity {
 
-    private ListView listView;
+    private MyListView listView;
     public static final String  ACTION="SUC_ACTION";
     private List<User> userList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suc);
-        listView=(ListView)findViewById(R.id.myList);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_suc);
+        setSupportActionBar(toolbar);
+
+        listView=(MyListView)findViewById(R.id.myList);
         userList=getUsers();
         MyAdapter myAdapter =new MyAdapter(this,userList);
         listView.setAdapter(myAdapter);
@@ -52,7 +60,7 @@ public class SucActivity extends AppCompatActivity {
 
     private List<User> getUsers()
     {
-        List<User> list=new ArrayList<User>();
+        List<User> list=new ArrayList<>();
         String[] projection=new String[]{MySqliteHelper.TestTable.COLUMN_NAME_NAME,
                 MySqliteHelper.TestTable.COLUMN_NAME_AGE,
                 MySqliteHelper.TestTable.COLUMN_NAME_HEAD_ID};
@@ -67,4 +75,7 @@ public class SucActivity extends AppCompatActivity {
         cursor.close();
         return list;
     }
+
+
+
 }
