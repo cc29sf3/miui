@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.cnki6187.adapter.DividerItemDecoration;
 import com.example.cnki6187.adapter.HomeAdapter;
 
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class Recycle extends AppCompatActivity {
         LinearLayoutManager lm= new LinearLayoutManager(this);
         lm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(lm);
-
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL_LIST));
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
