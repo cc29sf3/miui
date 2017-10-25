@@ -53,28 +53,35 @@
     app:cardElevation="16dp"
     android:layout_marginRight="8dp"
     app:layout_constraintRight_toRightOf="parent">
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
     <Button
         android:id="@+id/buttonRecycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recycle"
         />
+    <Button
+        android:id="@+id/buttonPagerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/buttonRecycle"
+        android:layout_marginLeft="5dp"
+        android:text="PagerView"
+        />
+    <Button
+        android:id="@+id/buttonFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonRecycle"
+        android:layout_marginTop="5dp"
+        android:text="Fragment"
+        />
 
-
-</LinearLayout>
+</RelativeLayout>
 </android.support.v7.widget.CardView>
 
 

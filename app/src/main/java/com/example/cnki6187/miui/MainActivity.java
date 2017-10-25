@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_Login;
     private Button btn_Cancel;
     private Button btn_Recycle;
+    private Button btn_PagerView;
+    private Button btn_fragment;
 
     ProgressDialog progressDialog = null;
 
@@ -81,6 +83,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setAction("com.example.cnki6187.francis29");
+                startActivity(intent);
+            }
+        });
+        btn_PagerView=(Button)findViewById(R.id.buttonPagerView);
+        btn_PagerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ViewPagerActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_fragment=(Button)findViewById(R.id.buttonFragment);
+        btn_fragment.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,FragmentActivity.class);
                 startActivity(intent);
             }
         });

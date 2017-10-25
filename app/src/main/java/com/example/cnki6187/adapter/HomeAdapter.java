@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import com.example.cnki6187.miui.R;
 import com.example.cnki6187.miui.Recycle;
 
@@ -19,11 +22,13 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
     private List<String> mDatas;
     private Context mContext;
+    private List<Integer> hightList;
 
     public HomeAdapter(List<String> datas,Context context)
     {
         mDatas=datas;
         mContext=context;
+        hightList=new ArrayList<Integer>();
     }
 
     @Override
@@ -36,6 +41,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(HomeAdapter.MyViewHolder holder, int position) {
         holder.tv.setText(mDatas.get(position));
+        if(hightList.size()<=position)
+        {
+            hightList.add(new Random().nextInt(100)*10);
+        }
+        ViewGroup.LayoutParams lp = holder.tv.getLayoutParams();
+        lp.height = hightList.get(position);
     }
 
     @Override
@@ -48,6 +59,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         public MyViewHolder(View view){
             super(view);
             tv=(TextView)view.findViewById(R.id.id_num);
+
         }
     }
 }
