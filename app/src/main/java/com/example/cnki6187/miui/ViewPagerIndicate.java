@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,6 +174,7 @@ public class ViewPagerIndicate extends HorizontalScrollView implements View.OnCl
             /*ViewPager从某项滑动到另一项*/
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.d("cuichao","ViewPager OnPageScrolled:"+position+","+positionOffset);
                 drawUnderline(position, positionOffset);
                 //实现标签与下划线一起滚动的效果
                 scrollTo((int) ((position + positionOffset - 1) * mTabWidth), 0);

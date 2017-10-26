@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_Recycle;
     private Button btn_PagerView;
     private Button btn_fragment;
+    private Button btn_indcater;
 
     ProgressDialog progressDialog = null;
 
@@ -99,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,FragmentActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_indcater=(Button)findViewById(R.id.buttonIndcater);
+        btn_indcater.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ViewPagerIndicateActivity.class);
                 startActivity(intent);
             }
         });
